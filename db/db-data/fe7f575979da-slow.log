@@ -1,0 +1,23 @@
+mariadbd, Version: 10.9.3-MariaDB-1:10.9.3+maria~ubu2204-log (mariadb.org binary distribution). started with:
+Tcp port: 0  Unix socket: /run/mysqld/mysqld.sock
+Time		    Id Command	Argument
+# Time: 230201 11:18:33
+# User@Host: root[root] @ localhost []
+# Thread_id: 4  Schema: mysql  QC_hit: No
+# Query_time: 3.100038  Lock_time: 0.016603  Rows_sent: 0  Rows_examined: 0
+# Rows_affected: 114486  Bytes_sent: 48
+use mysql;
+SET timestamp=1675250313;
+ALTER TABLE time_zone_transition ORDER BY Time_zone_id, Transition_time;
+# User@Host: root[root] @ localhost []
+# Thread_id: 4  Schema: mysql  QC_hit: No
+# Query_time: 3.102036  Lock_time: 0.016603  Rows_sent: 0  Rows_examined: 0
+# Rows_affected: 114486  Bytes_sent: 106
+SET timestamp=1675250313;
+execute immediate if(@wsrep_cannot_replicate_tz, 'do 0','ALTER TABLE time_zone_transition ORDER BY Time_zone_id, Transition_time');
+mariadbd, Version: 10.9.3-MariaDB-1:10.9.3+maria~ubu2204-log (mariadb.org binary distribution). started with:
+Tcp port: 0  Unix socket: /run/mysqld/mysqld.sock
+Time		    Id Command	Argument
+mariadbd, Version: 10.9.3-MariaDB-1:10.9.3+maria~ubu2204-log (mariadb.org binary distribution). started with:
+Tcp port: 0  Unix socket: /run/mysqld/mysqld.sock
+Time		    Id Command	Argument
