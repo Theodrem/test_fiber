@@ -1,0 +1,29 @@
+version: "3.8"
+services:
+  database-appointment:
+    image: mariadb
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MARIADB_ROOT_PASSWORD: dbpassword
+      MARIADB_DATABASE: db_appointment
+    volumes:
+      - ./db/db-data:/var/lib/mysql
+      - ./db/mariadb.cnf:/etc/mysql/mariadb.cnf
+      - ./db/init-db-appointment.sql:/docker-entrypoint-initdb.d/migration.sql
+    # healthcheck:
+    #   test: [ "CMD", "mysqladmin", "ping", "localhost", "-u", "root", "dbpassword" ]
+    #   interval: 5s
+    #   timeout: 5s
+    #   retries: 5
+  go-api:
+    build: .
+    restart: on-failure
+    environment:
+      MARIADB_ROOT_PASSWORD: dbpassword
+      MARIADB_DATABASE: db_appointment
+    ports:
+      - "8097:8097"
+    depends_on:
+      - database-appointment
